@@ -29,28 +29,6 @@ API/
 └── README.md
 ```
 
-
-# **Easy (Same as Users):**
-
-- Books (title, author, year, genre)
-- Movies (title, director, year, rating)
-- Songs (title, artist, album, duration)
-
-**Medium (Slightly More Fields):**
-
-- Video Games (title, genre, platform, releaseYear, rating, price)
-- Cars (make, model, year, color, price, mileage)
-- Restaurants (name, cuisine, location, rating, priceRange)
-
-**Advanced (More difficult !):**
-
-- Products with inventory tracking
-- Events with date/time
-- Recipes with ingredients (could introduce relationships!) (use Recipes and Ingredients tables)
-
-They allow follow the same concept:
-=> ORM Class for each Model (DB table) in the DB => all in the models/ directory
-
 ## Complete Architecture Flow
 ```md
 ┌─────────────────────────────────────────────────┐
