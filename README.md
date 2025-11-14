@@ -6,12 +6,12 @@ This application uses SQLite as database management system, Node.js for JS backe
 API/
 ├── src/
 │   ├── config/
-│   │   ├── config.js          ← Centralized config ✨ NEW
-│   │   └── db.js        ← Updated to use config
+│   │   ├── config.js          ← Centralized config
+│   │   └── db.js              ← Updated to use config
 │   ├── controllers/
 │   │   └── userController.js
 │   ├── middleware/
-│   │   ├── apiKey.js          ← API key validation ✨ NEW
+│   │   ├── apiKey.js          ← API key validation
 │   │   └── log.js
 │   ├── models/
 │   │   └── User.js
@@ -21,15 +21,14 @@ API/
 │   │   └── userService.js
 │   └── index.js               ← Updated to use config
 │
-├── .env                       ← Your secrets (NOT in Git) ✨ NEW
-├── .env.example               ← Template (IN Git) ✨ NEW
+├── .env.example               ← Template (IN Git)
 ├── .gitignore                 ← Includes .env
-├── db.sqlite
+├── db.sqlite                  ← created by `src/config/db.js`
 ├── package.json
 └── README.md
 ```
 
-## Complete Architecture Flow
+## Tier Architecture Flow 
 ```md
 ┌─────────────────────────────────────────────────┐
 │                   REQUEST                        │
