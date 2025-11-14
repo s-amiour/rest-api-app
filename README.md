@@ -51,7 +51,7 @@ API/
 They allow follow the same concept:
 => ORM Class for each Model (DB table) in the DB => all in the models/ directory
 
-## Complete Architecture Flow Now
+## Complete Architecture Flow
 ```md
 ┌─────────────────────────────────────────────────┐
 │                   REQUEST                        │
