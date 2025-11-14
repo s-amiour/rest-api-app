@@ -1,5 +1,5 @@
 # Rest API Application
-### This REST API application...
+This application uses SQLite as database management system, Node.js for JS backend programming, and Express.js for routing and controller abstraction.
 
 ## Project Structure
 ```bash
