@@ -30,16 +30,19 @@ export const getUserById = (req, res) => {
 // Create new user
 export const createUser = (req, res) => {
 	try {
-		const { name } = req.body
+		const { name, email } = req.body
 		
 		// Basic validation (could be moved to middleware)
 		if (!name) {
 			return res.status(400).json({ message: "Name is required" })
 		}
 		
-		const newUser = userService.createUser({ name })  // Call service
+		const newUser = userService.createUser({ name, email })  // Call service
 		res.status(201).json(newUser)
 	} catch (error) {
+		if (error.message === 'Email already exists') {
+			return res.status(409).json({ message: error.message })
+		}
 		res.status(500).json({ message: error.message })
 	}
 }
@@ -58,6 +61,9 @@ export const updateUser = (req, res) => {
 		
 		res.status(200).json(updatedUser)
 	} catch (error) {
+		if (error.message === 'Email already exists') {
+			return res.status(409).json({ message: error.message })
+		}
 		res.status(500).json({ message: error.message })
 	}
 }
@@ -72,7 +78,7 @@ export const deleteUser = (req, res) => {
 			return res.status(404).json({ message: "User not found" })
 		}
 		
-		res.status(204).send()  // No content
+		res.status(204).send()  // Successful Deletiom
 	} catch (error) {
 		res.status(500).json({ message: error.message })
 	}

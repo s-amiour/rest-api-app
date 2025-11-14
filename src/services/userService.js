@@ -1,49 +1,60 @@
 // Service, in this project, are used to serve functions and data (business logic) to controllers 
+// Import database
+import User from '../models/User.js'
 
-let users = [  // dummy data
-    {id: 1, name: "Aaron"},
-    {id: 2, name: "Bob"},
-    {id: 3, name: "Wilhelm"},
-    {id: 4, name: "Lewis"},
-]
-
-// Service functions - handle data operations
-
+// Get all users
 export const getAllUsers = () => {
-	return users
+	return User.findAll()
 }
 
+// Get user by ID
 export const getUserById = (id) => {
-	return users.find(user => user.id === parseInt(id))
+	return User.findById(id)
 }
 
+// Create new user
 export const createUser = (userData) => {
-	const newUser = {
-		id: users.length + 1,
-		name: userData.name
+	const { name, email } = userData
+	
+	// Business logic: Check if email already exists
+	if (email && User.emailExists(email)) {
+		throw new Error('Email already exists')
 	}
-	users.push(newUser)
-	return newUser
+	
+	// Additional business logic could go here
+	// e.g., send welcome email, log user creation, etc.
+	
+	return User.create({ name, email })
 }
 
+// Update user
 export const updateUser = (id, userData) => {
-	const index = users.findIndex(user => user.id === parseInt(id))
+	const { name, email } = userData
 	
-	if (index === -1) {
+	// Check if user exists
+	const existingUser = User.findById(id)
+	if (!existingUser) {
 		return null
 	}
 	
-	users[index] = { ...users[index], ...userData }  // seamless way to update a user
-	return users[index]
-}
-
-export const deleteUser = (id) => {
-	const index = users.findIndex(user => user.id === parseInt(id))
-	
-	if (index === -1) {
-		return false
+	// Business logic: Check if new email conflicts
+	if (email && email !== existingUser.email && User.emailExists(email, id)) {
+		throw new Error('Email already exists')
 	}
 	
-	users.splice(index, 1)
-	return true
+	return User.update(id, { name, email })
+}
+
+// Delete user
+export const deleteUser = (id) => {
+	return User.delete(id)
+}
+
+// Additional service methods with business logic
+export const getUserByEmail = (email) => {
+	return User.findByEmail(email)
+}
+
+export const getUserCount = () => {
+	return User.count()
 }
