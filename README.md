@@ -1,6 +1,5 @@
 # Simple Rest API Application
-
-## This REST API application utilizes the MVC architectural design pattern that separates an app into three parts **M**odels, **V**iew, and **C**ontrollers. It uses *SQLite* as database management system, *Node.js* for JS backend programming, and *Express.js* for routing and controller abstraction.
+This REST API application utilizes the MVC architectural design pattern that separates an app into three parts **M**odels, **V**iew, and **C**ontrollers. It uses *SQLite* as database management system, *Node.js* for JS backend programming, and *Express.js* for routing and controller abstraction.
 
 ## Features
 
