@@ -22,7 +22,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(logMiddleware)
 
 // Enable CORS for all origins
-app.use(cors());
+app.use(cors({origin:"https://s-amiour.github.io/rest-api-app-front/"}));
 
 // Public routes (no API key needed)
 app.get('/', (req, res) => {
@@ -46,7 +46,7 @@ app.get('/health', (req, res) => {
 })
 
 // Protected routes (API key required)
-// Option 1: Protect all routes
+// Mount the model router at its route, making it the base url
 app.use('/books', validateApiKey, bookRoutes)
 app.use('/movies', validateApiKey, movieRoutes)
 app.use('/songs', validateApiKey, songRoutes)
