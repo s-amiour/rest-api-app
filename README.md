@@ -1,8 +1,6 @@
-# Rest API Application
+# Simple Rest API Application
 
-## ⚠️ This repository is a continuation of the 'rest-api-app' repository. It contains the addition of the frontend side of the project. This REST API application utilizes the MVC architectural design pattern that separates an app into three parts **M**odels, **V**iew, and **C**ontrollers.
-
-### This application uses *SQLite* as database management system, *Node.js* for JS backend programming, and *Express.js* for routing and controller abstraction.
+## This REST API application utilizes the MVC architectural design pattern that separates an app into three parts **M**odels, **V**iew, and **C**ontrollers. It uses *SQLite* as database management system, *Node.js* for JS backend programming, and *Express.js* for routing and controller abstraction.
 
 ## Features
 
@@ -142,7 +140,7 @@ API/
                   ▼
 ┌─────────────────────────────────────────────────┐
 │               DATABASE                          │
-│            (database.sqlite)                    │
+│            (db.sqlite)                    │
 │  - Actual data storage                          │
 └─────────────────────────────────────────────────┘
 ```
