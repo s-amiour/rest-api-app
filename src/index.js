@@ -1,4 +1,5 @@
 import express from "express"
+import cors from "cors"
 import config from "./config/config.js"  // import env variables
 import { initializeDatabase } from "./config/db.js"
 import logMiddleware from "./middleware/log.js"
@@ -19,6 +20,9 @@ await initializeDatabase()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(logMiddleware)
+
+// Enable CORS for all origins
+app.use(cors());
 
 // Public routes (no API key needed)
 app.get('/', (req, res) => {
