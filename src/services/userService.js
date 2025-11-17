@@ -1,4 +1,5 @@
 // Service, in this project, are used to serve functions and data (business logic) to controllers 
+
 // Import database
 import User from '../models/User.js'
 

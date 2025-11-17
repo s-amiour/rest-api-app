@@ -1,9 +1,14 @@
 import express from "express"
-import config from "./config/config.js"  // Import config
+import config from "./config/config.js"  // import env variables
+import { initializeDatabase } from "./config/db.js"
 import logMiddleware from "./middleware/log.js"
 import { validateApiKey, validateApiKeyProduction } from "./middleware/apiKey.js"  // Import API key middleware
 import userRoutes from "./routes/userRoutes.js"
-import { initializeDatabase } from "./config/db.js"
+import bookRoutes from "./routes/bookRoutes.js"
+import movieRoutes from "./routes/movieRoutes.js"
+import songRoutes from "./routes/songRoutes.js"
+import videoGameRoutes from "./routes/videoGameRoutes.js"
+
 
 const app = express()
 
@@ -37,11 +42,19 @@ app.get('/health', (req, res) => {
 })
 
 // Protected routes (API key required)
-// Option 1: Protect all /users routes
+// Option 1: Protect all routes
+app.use('/books', validateApiKey, bookRoutes)
+app.use('/movies', validateApiKey, movieRoutes)
+app.use('/songs', validateApiKey, songRoutes)
 app.use('/users', validateApiKey, userRoutes)
+app.use('/video-games', validateApiKey, videoGameRoutes)
 
 // Option 2: Only protect in production (easier for development)
+// app.use('/books', validateApiKeyProduction, bookRoutes)
+// app.use('/movies', validateApiKeyProduction, movieRoutes)
+// app.use('/songs', validateApiKeyProduction, songRoutes)
 // app.use('/users', validateApiKeyProduction, userRoutes)
+// app.use('/video-games', validateApiKeyProduction, videoGameRoutes)
 
 // 404 handler
 app.use((req, res) => {
@@ -68,11 +81,15 @@ app.listen(config.port, () => {
 	console.log(`\nAPI Endpoints:`)
 	console.log(`  GET    /              - Welcome message (public)`)
 	console.log(`  GET    /health        - Health check (public)`)
-	console.log(`  GET    /users         - Get all users (protected)`)
-	console.log(`  GET    /users/:id     - Get user by ID (protected)`)
-	console.log(`  POST   /users         - Create new user (protected)`)
-	console.log(`  PUT    /users/:id     - Update user (protected)`)
-	console.log(`  DELETE /users/:id     - Delete user (protected)`)
+	console.log(`  GET    /<models>         - Get all models (protected)`)
+	console.log(`  GET    /<models>/:id     - Get by model ID (protected)`)
+	console.log(`  POST   /<models>         - Create new model (protected)`)
+	console.log(`  PUT    /<models>/:id     - Update model (protected)`)
+	console.log(`  DELETE /<model>/:id     - Delete model (protected)`)
 })
+
+// Close DB connection iff interruption
+// process.on('SIGINT', shutdown);
+// process.on('SIGTERM', shutdown);
 
 export default app

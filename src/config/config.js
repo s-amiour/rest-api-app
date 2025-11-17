@@ -19,7 +19,7 @@ export const config = {
 	nodeEnv: process.env.NODE_ENV || 'development',
 	
 	// Database
-	databaseUrl: process.env.DATABASE_URL || './database.sqlite',
+	databaseUrl: process.env.DATABASE_URL || './db.sqlite',
 	
 	// API Security
 	apiKey: process.env.API_KEY,
