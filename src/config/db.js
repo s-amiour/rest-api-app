@@ -44,7 +44,7 @@ export const initializeDatabase = async () => {
 	VideoGame.createTable()
 	
 	// Only seed in development
-	if (config.isDevelopment()) {
+	if (true) { // config.isDevelopment()
 		User.seed()
 		Book.seed()
 		Movie.seed()
