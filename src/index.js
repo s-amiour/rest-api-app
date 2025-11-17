@@ -22,7 +22,7 @@ app.use(express.urlencoded({ extended: true }))
 app.use(logMiddleware)
 
 // Enable CORS for all origins
-app.use(cors({origin: ["https://s-amiour.github.io/rest-api-app-front/", "http://127.0.0.1:5500"]}));
+app.use(cors({origin: "*"}));
 
 // Public routes (no API key needed)
 app.get('/', (req, res) => {
