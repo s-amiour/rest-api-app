@@ -1,0 +1,59 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+
+  "extends": [
+    "config:recommended"
+  ],
+
+
+  "assignees": ["s-amiour"],
+
+  "labels": ["dependencies"],
+
+  "prConcurrentLimit": 5,
+
+  "schedule": ["before 5am on Monday"],
+
+  "separateMajorMinor": true,
+
+  "packageRules": [
+
+    {
+      "matchUpdateTypes": ["minor", "patch"],
+      "matchDepTypes": ["dependencies"],
+      "groupName": "production dependencies (minor + patch)",
+      "groupSlug": "prod-minor-patch"
+    },
+
+    {
+      "matchUpdateTypes": ["major"],
+      "matchDepTypes": ["dependencies"],
+      "labels": ["dependencies", "major-update"],
+      "addLabels": ["needs-review"],
+      "prPriority": 5
+    },
+
+    {
+      "matchDepTypes": ["devDependencies"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "dev dependencies (minor + patch)",
+      "automerge": true,
+      "automergeType": "pr",
+      "platformAutomerge": true
+    },
+
+    {
+      "matchManagers": ["github-actions"],
+      "groupName": "GitHub Actions",
+      "automerge": true,
+      "automergeType": "pr",
+      "platformAutomerge": true
+    }
+  ],
+
+  "commitMessagePrefix": "chore(deps):",
+  "commitMessageAction": "update",
+
+  "dependencyDashboard": true,
+  "dependencyDashboardTitle": "Renovate Dependency Dashboard"
+}
