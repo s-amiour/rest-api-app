@@ -11,6 +11,11 @@ on:
     branches:
       - main
 
+permissions:
+  issues: write
+  pull-requests: write
+  contents: write
+
 jobs:
   test:
     name: Run Tests
