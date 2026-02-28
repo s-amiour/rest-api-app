@@ -48,7 +48,7 @@ class User {
 		const stmt = db.prepare(`
 			INSERT INTO ${this.tableName} (name, email) 
 			VALUES (?, ?)
-		`)
+		`)  // Data Validation
 		const result = stmt.run(name, email || null)
 		return this.findById(result.lastInsertRowid)
 	}
