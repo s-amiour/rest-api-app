@@ -10,6 +10,8 @@
 
   "labels": ["dependencies"],
 
+  "prCreation": "immediate",
+
   "prConcurrentLimit": 5,
 
   "schedule": ["before 5am on Monday"],
