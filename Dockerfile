@@ -9,6 +9,7 @@ RUN npm ci --omit=dev
 
 # Copy actual application code
 COPY src ./src
+COPY db.sqlite ./
 EXPOSE 3000
 
 # Run container as non-root user for security
